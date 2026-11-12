@@ -77,7 +77,7 @@
      (Formspree, Netlify Forms o Cloudflare Worker). */
   var MODO = 'whatsapp';
   var ENDPOINT = ''; // ej. https://formspree.io/f/xxxxxxx
-  var TELEFONO = '593999999999'; // EDITAR: número real
+  var TELEFONO = '593995919158'; // WhatsApp de la academia (formato internacional, sin +)
 
   var form = document.getElementById('formContacto');
   if (form) {

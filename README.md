@@ -23,7 +23,7 @@ Todo lo de abajo es **demo**. Está marcado así en el código con `EDITAR` y ap
 
 | Dato | Dónde | Valor actual (demo) |
 |---|---|---|
-| Teléfono / WhatsApp | todas las páginas + `assets/js/app.js` (`TELEFONO`) | `+593 99 999 9999` |
+| Teléfono / WhatsApp | ✅ ya aplicado en las 9 páginas y en `assets/js/app.js` (`TELEFONO`) | `+593 99 591 9158` |
 | Correo | todas las páginas | `info@cowboysbc.com` |
 | Dirección | `sedes.html`, `contacto.html`, pie | `Av. Principal y Calle 2, Quito` |
 | Horarios | `sedes.html`, `contacto.html` | valores de ejemplo |
@@ -42,7 +42,7 @@ grep -rn "9999\|cowboysbc.com\|Av. Principal\|Nombre Apellido" .
 
 ### El teléfono se cambia en dos sitios
 
-1. En el HTML está escrito a mano (`wa.me/593999999999` y `tel:+593999999999`).
+1. En el HTML está escrito a mano (`wa.me/593995919158` y `tel:+593995919158`).
 2. En `assets/js/app.js`, la constante `TELEFONO` (lo usa el formulario).
 
 ---
