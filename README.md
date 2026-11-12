@@ -50,12 +50,16 @@ grep -rn "9999\|cowboysbc.com\|Av. Principal\|Nombre Apellido" .
 ## 3. Cambiar el logo y las fotos
 
 ### Logo
-`assets/img/logo.svg` es un **emblema provisional** (toro + balón) dibujado para este esqueleto.
-Cuando tengas el logo oficial:
+El logo **oficial** ya está aplicado. Los archivos son:
 
-1. Guarda el archivo como `assets/img/logo.svg` (o `.png` con fondo transparente).
-2. Si es PNG, cambia en los HTML `logo.svg` por `logo.png`.
-3. Regenera el favicon con el mismo diseño (`assets/img/favicon.svg`).
+| Archivo | Uso |
+|---|---|
+| `assets/img/logo-toro.png` | cabeza del toro, fondo transparente (900×820). Header, banner y pie |
+| `assets/img/logo-completo.png` | emblema + palabra COWBOYS, transparente (900×842). Para camisetas, redes o piezas que pidan el logo completo |
+| `assets/img/favicon.png` | ícono del navegador (180×180), recortado de la misma cabeza |
+
+Salieron del archivo vectorial `LOGO UNIFORMES.ai` (600 dpi, fondo transparente). Si el cliente
+entrega una versión nueva, reemplaza esos tres archivos manteniendo el nombre y lista.
 
 ### Fotos
 Están en `assets/img/` en WebP, ya recortadas y comprimidas:

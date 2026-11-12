@@ -124,6 +124,8 @@ p{ margin:0 0 1em }
 }
 .cabecera__fila{ display:flex; align-items:center; gap:24px; height:76px }
 .marca{ display:flex; align-items:center; gap:12px; color:var(--hueso); flex-shrink:0 }
+.marca img{ height:46px; width:auto; display:block;
+  filter:drop-shadow(0 0 1.5px rgba(255,255,255,.45)) drop-shadow(0 3px 10px rgba(0,0,0,.6)) }
 .marca__texto{
   display:flex; flex-direction:column; line-height:1;
   font-family:var(--display); text-transform:uppercase;
@@ -382,6 +384,8 @@ dialog.visor button{
   display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr;
   gap:clamp(24px,4vw,48px); padding-bottom:clamp(32px,4vw,56px);
 }
+.pie__marca img{ height:58px; width:auto; display:block; margin-bottom:16px;
+  filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35)) }
 .pie__nombre{ font-family:var(--display); text-transform:uppercase; font-size:1.3rem; margin:12px 0 6px }
 .pie__lema{ color:var(--gris); font-size:.88rem; max-width:30ch }
 .pie__col h2{ font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gris); margin-bottom:14px }
@@ -459,6 +463,7 @@ dialog.visor button{
 
 /* ---------- hero más liviano en móvil ---------- */
 @media (max-width:640px){
+  .marca img{ height:40px }
   .hero__fondo{ background-image:url("../img/hero-sm.webp"); background-position:58% 32% }
 }
 
@@ -478,8 +483,8 @@ dialog.visor button{
 }
 .banner__interior{ position:relative; display:flex; flex-direction:column; align-items:center }
 .banner__logo{
-  width:clamp(84px,10vw,124px); height:auto;
-  filter:drop-shadow(0 0 34px rgba(192,38,211,.45));
+  height:clamp(104px,11vw,144px); width:auto;
+  filter:drop-shadow(0 0 40px rgba(192,38,211,.45));
 }
 .banner__lema{
   font-family:var(--display); text-transform:uppercase;
