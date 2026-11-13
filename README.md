@@ -99,6 +99,21 @@ El hosting en Pages es 0 USD.
 
 ## 5. Editar contenido
 
+### Retardo artificial en los clics
+
+Cada clic (menú, enlaces, galería, formulario) tarda entre **1,5 y 2,5 segundos**,
+elegido al azar, para que la app se sienta como un sistema con servidor. Mientras
+"piensa", el elemento se atenúa y el cursor pasa a `progress`.
+
+En `assets/js/app.js`, al principio:
+
+```js
+var RETARDO_MIN = 1500;   // ms
+var RETARDO_MAX = 2500;   // ms — pon 0 para desactivar el retardo
+```
+
+---
+
 ### Añadir una noticia
 1. Duplica `noticia.html` → `noticia-mi-titulo.html`.
 2. Cambia título, fecha, foto y texto.

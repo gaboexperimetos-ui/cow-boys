@@ -529,3 +529,17 @@ dialog.visor button{
 .ig-card p{ margin:0 0 4px; font-weight:800 }
 .ig-card p a{ border-bottom:1px solid var(--rojo) }
 .ig-card__nota{ font-weight:400 !important; font-size:.8rem; color:#5C5563; margin-top:6px !important }
+
+
+/* ---------- estado "pensando" durante el retardo ---------- */
+a.cargando, button.cargando{
+  cursor:progress;
+  opacity:.62;
+  transition:opacity .12s linear;
+  pointer-events:none;
+}
+.mosaico figure.cargando{
+  cursor:progress;
+  filter:saturate(.55) brightness(.82);
+  transition:filter .12s linear;
+}

@@ -1,18 +1,59 @@
 /* COWBOYS — JS sin dependencias
-   1. Menú móvil  2. Sombra de cabecera  3. Revelado al hacer scroll
-   4. Año del pie  5. Visor de galería  6. Formulario → WhatsApp */
+   0. Retardo artificial  1. Menú móvil  2. Sombra de cabecera
+   3. Revelado al hacer scroll  4. Año del pie  5. Visor de galería
+   6. Formulario → WhatsApp */
 
 (function () {
   'use strict';
+
+  /* ---- 0. retardo artificial ----
+     Cada clic tarda entre RETARDO_MIN y RETARDO_MAX milisegundos, elegido
+     al azar, para que la app no responda siempre igual. Se aplica al menú,
+     a los enlaces, al visor de la galería y al formulario.
+     Pon RETARDO_MAX en 0 para desactivarlo. */
+  var RETARDO_MIN = 1500;
+  var RETARDO_MAX = 2500;
+
+  function espera() {
+    return Math.round(RETARDO_MIN + Math.random() * (RETARDO_MAX - RETARDO_MIN));
+  }
+
+  function conRetardo(el, accion) {
+    if (RETARDO_MAX <= 0) { accion(); return; }
+    if (el && el.dataset.ocupado === '1') return;
+    if (el) { el.dataset.ocupado = '1'; el.classList.add('cargando'); }
+    document.documentElement.style.cursor = 'progress';
+    setTimeout(function () {
+      if (el) { el.classList.remove('cargando'); delete el.dataset.ocupado; }
+      document.documentElement.style.cursor = '';
+      accion();
+    }, espera());
+  }
+
+  /* ---- 0b. todos los enlaces ---- */
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.charAt(0) === '#') return;
+    e.preventDefault();
+    conRetardo(a, function () {
+      if (a.target === '_blank') window.open(href, '_blank', 'noopener');
+      else window.location.href = href;
+    });
+  });
 
   /* ---- 1. menú móvil ---- */
   var btn = document.getElementById('menuBtn');
   var nav = document.getElementById('nav');
   if (btn && nav) {
     btn.addEventListener('click', function () {
-      var abierto = nav.classList.toggle('abierto');
-      btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
-      btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+      conRetardo(btn, function () {
+        var abierto = nav.classList.toggle('abierto');
+        btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+        btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+      });
     });
     nav.addEventListener('click', function (e) {
       if (e.target.tagName === 'A') {
@@ -60,10 +101,12 @@
   if (visor && visorImg && typeof visor.showModal === 'function') {
     document.querySelectorAll('.mosaico figure').forEach(function (fig) {
       fig.addEventListener('click', function () {
-        var img = fig.querySelector('img');
-        visorImg.src = img.src;
-        visorImg.alt = img.alt;
-        visor.showModal();
+        conRetardo(fig, function () {
+          var img = fig.querySelector('img');
+          visorImg.src = img.src;
+          visorImg.alt = img.alt;
+          visor.showModal();
+        });
       });
     });
     visor.addEventListener('click', function (e) {
@@ -97,12 +140,13 @@
           + 'Tema: ' + encodeURIComponent(tema) + '%0A'
           + 'Correo: ' + encodeURIComponent(correo) + '%0A%0A'
           + encodeURIComponent(mensaje);
-        window.open('https://wa.me/' + TELEFONO + '?text=' + texto, '_blank', 'noopener');
-        if (estado) {
-          estado.hidden = false;
-          estado.textContent = 'Abrimos WhatsApp con tu mensaje listo para enviar.';
-        }
-        form.reset();
+        var boton = form.querySelector('button[type="submit"]');
+        if (estado) { estado.hidden = false; estado.textContent = 'Enviando…'; }
+        conRetardo(boton, function () {
+          window.open('https://wa.me/' + TELEFONO + '?text=' + texto, '_blank', 'noopener');
+          if (estado) estado.textContent = 'Abrimos WhatsApp con tu mensaje listo para enviar.';
+          form.reset();
+        });
         return;
       }
 
