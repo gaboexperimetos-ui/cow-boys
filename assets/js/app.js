@@ -1,9 +1,28 @@
-/* Águilas BC — JS sin dependencias
-   1. Menú móvil  2. Sombra de cabecera  3. Revelado al hacer scroll
-   4. Año del pie  5. Visor de galería  6. Formulario → WhatsApp */
+/* COWBOYS — JS sin dependencias
+   0. Pantalla de carga  1. Menú móvil  2. Sombra de cabecera
+   3. Revelado al hacer scroll  4. Año del pie  5. Visor de galería
+   6. Formulario → WhatsApp */
 
 (function () {
   'use strict';
+
+  /* ---- 0. pantalla de carga (2,5 s) ----
+     RETARDO_MS controla cuánto se queda la pantalla antes de desvanecerse. */
+  var RETARDO_MS = 2500;
+  (function () {
+    var cargador = document.getElementById('cargador');
+    if (!cargador) return;
+    var inicio = window.__carga || Date.now();
+    var falta = Math.max(0, RETARDO_MS - (Date.now() - inicio));
+    var salir = function () {
+      cargador.classList.add('cargador--fuera');
+      cargador.addEventListener('transitionend', function () { cargador.remove(); }, { once: true });
+      setTimeout(function () { if (cargador.parentNode) cargador.remove(); }, 900);
+      document.documentElement.style.overflow = '';
+    };
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(salir, falta);
+  })();
 
   /* ---- 1. menú móvil ---- */
   var btn = document.getElementById('menuBtn');

@@ -529,3 +529,39 @@ dialog.visor button{
 .ig-card p{ margin:0 0 4px; font-weight:800 }
 .ig-card p a{ border-bottom:1px solid var(--rojo) }
 .ig-card__nota{ font-weight:400 !important; font-size:.8rem; color:#5C5563; margin-top:6px !important }
+
+
+/* ---------- pantalla de carga (2,5 s) ---------- */
+.cargador{
+  position:fixed; inset:0; z-index:9999;
+  display:none; place-items:center;
+  background:
+    radial-gradient(70% 70% at 50% 42%, #1E0A2D, #0D0514 72%);
+  transition:opacity .5s ease, visibility .5s ease;
+}
+.js .cargador{ display:grid }
+.cargador--fuera{ opacity:0; visibility:hidden; pointer-events:none }
+.cargador__caja{ display:flex; flex-direction:column; align-items:center; gap:22px }
+.cargador img{
+  height:clamp(104px,13vw,148px); width:auto;
+  filter:drop-shadow(0 0 34px rgba(192,38,211,.45));
+  animation:latido 2.5s ease-in-out infinite;
+}
+.cargador__barra{
+  display:block; width:clamp(120px,18vw,168px); height:3px;
+  border-radius:3px; background:rgba(245,240,230,.14); overflow:hidden;
+}
+.cargador__barra span{
+  display:block; height:100%; width:0; background:var(--rojo);
+  border-radius:3px;
+  animation:cargando 2.5s cubic-bezier(.35,0,.15,1) forwards;
+}
+@keyframes cargando{ to{ width:100% } }
+@keyframes latido{
+  0%,100%{ transform:scale(1); opacity:.94 }
+  50%{ transform:scale(1.045); opacity:1 }
+}
+@media (prefers-reduced-motion:reduce){
+  .cargador img{ animation:none }
+  .cargador__barra span{ animation:cargando 2.5s linear forwards }
+}
