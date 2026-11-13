@@ -1,5 +1,7 @@
 # COWBOYS · Academia de Baloncesto — sitio web
 
+**Versión 1.0** · el detalle de lo que incluye está en [CHANGELOG.md](CHANGELOG.md).
+
 Sitio estático (HTML + CSS + JS, sin dependencias ni build). Se abre con doble clic en
 `index.html` y se publica gratis en Cloudflare Pages.
 
